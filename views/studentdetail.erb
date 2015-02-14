@@ -1,0 +1,11 @@
+<% erb :'partials/_header' %>
+<h1>Student Information</h1>
+<p>This WDI 16 student:</p>
+<ul>
+  <li>Name: <%= @student["name"]%></li>
+  <li>Age: <%= @student["age"]%></li>
+  <li>Spirit Animal: <%= @student["spirit_animal"]%></li>
+  <li>Squad: <%= @squad["name"]%></li>
+</ul>
+<a href="/squads">All Squads</a>  
+<% erb :'partials/_footer' %>

@@ -1,0 +1,10 @@
+<% erb :'partials/_header' %>
+<h1>List of Squads</h1>
+<p>WDI 16 has the following squads:</p>
+<ul>
+<% @squads.each do |squad| %>
+  <li><%= squad["name"]%> <a href="/squads/<%=squad["squad_id"]%>">show info</a></li>
+  <% end %>
+</ul>
+<a href="/squads/new">Add New Squad</a>
+<% erb :'partials/_footer' %>
