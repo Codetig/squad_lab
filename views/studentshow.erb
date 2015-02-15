@@ -1,11 +1,11 @@
-<% erb :'partials/_header' %>
+<%= erb :"partials/_header" %>
 <h1>Students in "<%= @squad["name"] %>"</h1>
 <p>This WDI 16 squad:</p>
 <ul>
 <% @students.each do |student| %>
-  <li>Name: <%= student["name"] %> <a href="/squads/<%= @squad['squad_id']%>/students/<%= student['student_id'] %>">see info</a></li>
+  <li><%= student["name"] %> <a href="/squads/<%= @squad['squad_id']%>/students/<%= student['student_id'] %>">see info</a></li>
   <% end %>
 </ul>
 <a href="/squads/<%= @squad['squad_id'] %>/students/new">Add New Student</a>
   
-<% erb :'partials/_footer' %>
+<%= erb :"partials/_footer" %>
