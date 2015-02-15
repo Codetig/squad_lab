@@ -7,5 +7,5 @@
   <li>Spirit Animal: <%= @student["spirit_animal"]%></li>
   <li>Squad: <%= @squad["name"]%></li>
 </ul>
-<a href="/squads">All Squads</a>  
+<a href="/squads/<%= @student['squad_id'] %>/students/<%= @student['student_id'] %>/edit">Edit Student</a>  <a href="/squads">All Squads</a>  
 <% erb :'partials/_footer' %>
