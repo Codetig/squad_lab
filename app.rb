@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'pry'
 require 'pg'
+require 'sinatra/json'
 require 'better_errors'
 
 configure :development do
@@ -40,6 +41,22 @@ get '/squads/:squad_id/students/new' do
   squad = @conn.exec("SELECT * FROM squads WHERE squad_id=$1", [params[:squad_id].to_i])
   @squad = squad[0]
   erb :studentnew
+end
+
+get '/jsquads' do
+  squads_all = []
+  @conn.exec("SELECT * FROM squads ORDER BY squad_id ASC") do |result|
+    result.each{|squad| squads_all << squad}
+  end
+
+  @squads = squads_all
+  json @squads
+end
+
+get '/jsquads/:squad_id' do
+  squad = @conn.exec("SELECT * FROM squads WHERE squad_id=$1", [params[:squad_id].to_i])
+  @squad = squad[0]
+  json @squad
 end
 
 get '/squads/:squad_id' do
@@ -89,13 +106,13 @@ post '/squads' do
 end
 
 post '/squads/:squad_id/students' do
-  @conn.exec("INSERT INTO students (name, age, spirit_animal, squad_id) VALUES ($1, $2, $3, $4)", [params[:name], params[:age].to_i, params[:animal], params[:squadid].to_i])
+  @conn.exec("INSERT INTO students (name, age, spirit_animal, squad_id, is_squad_leader) VALUES ($1, $2, $3, $4, $5)", [params[:name], params[:age].to_i, params[:animal], params[:squadid].to_i, params[:leader]])
   redirect "/squads/#{params[:squadid].to_i}/students"
 end
 
 #PUTS
 put '/squads/:squad_id/students/:student_id' do
-  @conn.exec("UPDATE students SET name=$1, age=$2, spirit_animal=$3, squad_id=$4 WHERE student_id=$5", [params[:name], params[:age].to_i, params[:spirit_animal], params[:squadid].to_i, params[:student_id].to_i])
+  @conn.exec("UPDATE students SET name=$1, age=$2, spirit_animal=$3, squad_id=$4, is_squad_leader=$5 WHERE student_id=$6", [params[:name], params[:age].to_i, params[:animal], params[:squadid].to_i, params[:leader]=='t'||params[:leader]=='true', params[:student_id].to_i])
   redirect "/squads/#{params[:squadid]}/students/#{params[:student_id]}"
 end
 

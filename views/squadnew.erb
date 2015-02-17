@@ -1,13 +1,20 @@
-<% erb :'partials/_header' %>
+<%= erb :'partials/_header' %>
 
-<div>
-<h1>New Squad</h1>
-<p>Please add details of your new squad below:</p>
-  <form action="/squads" method="POST">
-    Name: <input type="text" name="name" id="name">
-    Mascot: <input type="text" name="mascot" id="mascot">
-    <input type="submit" value="Add Squad">
+<div class="container-fluid">
+  <h1>New Squad</h1>
+  <p>Please add details of your new squad below:</p>
+  <form action="/squads" method="POST" class="form-horizontal">
+    <div class="form-group">
+    <label for="name" class="col-sm-2 control-label">Name: </label>
+    <div class="col-sm-10">
+    <input type="text" name="name" id="name">
+    </div></div>
+    <div class="form-group">
+    <label for="mascot" class="col-sm-2 control-label">Mascot:</label>
+    <div class="col-sm-10">
+    <input type="text" name="mascot" id="mascot"> <input type="submit" value="Add Squad" class="btn btn-primary">
+    </div></div>
   </form>
 </div>
 
-<% erb :'partials/_footer' %>
+<%= erb :'partials/_footer' %>

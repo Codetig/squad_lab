@@ -1,17 +1,43 @@
-<% erb :'partials/_header' %>
-<div>
-<h1>Edit Student</h1>
-<p>Please make desired changes to the student below:</p>
-  <form action="/squads/<%= @student['squad_id'] %>/students/<%= @student['student_id'] %>" method="POST">
-  <input type="hidden" name="_method" value="PUT">
-    <label for="name">Name:</label><input type="text" name="name" id="name" value="<%= @student["name"] %>"> <br>
-   <label for="age">Age:</label><input type="text" name="age" id="age" value=<%= @student["age"] %>> <br>
-    <label for="animal">Spirit Animal:</label><input type="text" name="animal" id="animal" value=<%= @student["spirit_animal"] %>> <br>
-     <label for="squad_id">Squad ID:</label><input type="text" name="squadid" id="squad_id" value=<%= @student["squad_id"] %>> <br>
-    <input type="submit" value="Update">
+<%= erb :'partials/_header' %>
+<div class="container-fluid" id="student-edit">
+  <h1>Edit Student</h1>
+  <p>Please make desired changes to the student below:</p>
+  <form action="/squads/<%= @student['squad_id'] %>/students/<%= @student['student_id'] %>" method="POST" class="form-horizontal">
+    <input type="hidden" name="_method" value="PUT">
+    <div class="form-group">
+    <label for="name" class="col-sm-3 control-label">Name:</label>
+    <div class="col-sm-9">
+    <input type="text" name="name" id="name" value="<%= @student["name"] %>">
+    </div></div>
+    <div class="form-group">
+    <label for="age" class="col-sm-3 control-label">Age:</label>
+    <div class="col-sm-9">
+    <input type="text" name="age" id="age" value=<%= @student["age"] %>> 
+    </div></div>
+    <div class="form-group">
+    <label for="animal" class="col-sm-3 control-label">Spirit Animal:</label>
+    <div class="col-sm-9">
+    <input type="text" name="animal" id="animal" value=<%= @student["spirit_animal"] %>>
+    </div></div>
+    <div class="form-group">
+    <label for="leader" class="col-sm-3 control-label">Squad Leader?</label>
+    <div class="col-sm-9">
+    <input type="text" name="leader" id="leader" value=<%= @student["is_squad_leader"] %>>
+    </div></div>
+    <div class="form-group">
+    <label for="squad_id" class="col-sm-3 control-label">Squad ID:</label>
+    <div class="col-sm-9">
+    <input type="text" name="squadid" id="squad_id" value=<%= @student["squad_id"] %>>
+    <input type="submit" value="Update" class="btn btn-primary">
+    </div></div>
   </form>
-  <form action="/squads/<%= @student["squad_id"] %>/students/<%=@student["student_id"]%>" method="POST">
-  <input type="hidden" name="_method" value="DELETE"><input type="submit" value="DELETE">
+  <small></small>
+  <ul class="col-sm-offset-3"></ul>
+  </div>
+  
+  <footer>
+  <form id="del-form" action="/squads/<%= @student["squad_id"] %>/students/<%=@student["student_id"]%>" method="POST" class="navbar-form navbar-fixed-bottom">
+    <input type="hidden" name="_method" value="DELETE"><input type="submit" value="DELETE" class="btn btn-danger del">
   </form>
-</div>
-<% erb :'partials/_footer' %>
+  </footer>
+<%= erb :'partials/_footer' %>

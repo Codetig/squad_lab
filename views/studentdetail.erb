@@ -1,11 +1,33 @@
-<% erb :'partials/_header' %>
-<h1>Student Information</h1>
-<p>This WDI 16 student:</p>
-<ul>
-  <li>Name: <%= @student["name"]%></li>
-  <li>Age: <%= @student["age"]%></li>
-  <li>Spirit Animal: <%= @student["spirit_animal"]%></li>
-  <li>Squad: <%= @squad["name"]%></li>
-</ul>
-<a href="/squads/<%= @student['squad_id'] %>/students/<%= @student['student_id'] %>/edit">Edit Student</a>  <a href="/squads">All Squads</a>  
-<% erb :'partials/_footer' %>
+<%= erb :'partials/_header' %>
+<div class="container-fluid">
+  <h1>Student Information</h1>
+  <p>WDI 16 student details:</p>
+  <div class="col-sm-6 col-sm-offset-2">
+  <table class="table-hover table">
+    <tr>
+      <td>Name</td>
+      <td><%= @student["name"]%></td>
+    </tr>
+    <tr>
+      <td>Age</td>
+      <td><%= @student["age"]%></td>
+    </tr>
+    <tr>
+      <td>Spirit Animal</td>
+      <td><%= @student["spirit_animal"]%></td>
+    </tr>
+    <tr>
+      <td>Squad</td>
+      <td><%= @squad["name"]%></td>
+    </tr>
+    <tr>
+      <td>Squad Leader?</td>
+      <td><%= @student["is_squad_leader"]%></td>
+    </tr>
+  </table>
+  <hr>
+  <small><a href="/squads/<%= @student['squad_id'] %>/students/<%= @student['student_id'] %>/edit">Edit Student</a></small>
+  </div>
+  
+</div>
+<%= erb :'partials/_footer' %>

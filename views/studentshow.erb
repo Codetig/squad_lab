@@ -1,11 +1,14 @@
 <%= erb :"partials/_header" %>
-<h1>Students in "<%= @squad["name"] %>"</h1>
-<p>This WDI 16 squad:</p>
-<ul>
-<% @students.each do |student| %>
-  <li><%= student["name"] %> <a href="/squads/<%= @squad['squad_id']%>/students/<%= student['student_id'] %>">see info</a></li>
-  <% end %>
-</ul>
-<a href="/squads/<%= @squad['squad_id'] %>/students/new">Add New Student</a>
-  
+<div class="container-fluid">
+  <h1>"<%= @squad["name"] %>" Students</h1>
+  <p>Students in this squad are listed below:</p>
+  <ul>
+  <% @students.each do |student| %>
+  <% b=["<span>", "</span>"] %>
+  <% b=["<b>", "</b>"] if student['is_squad_leader']=='t' %>
+    <li><%= b[0] + student["name"] + b[1] %> <small><a href="/squads/<%= @squad['squad_id']%>/students/<%= student['student_id'] %>">see info</a></small></li>
+    <% end %>
+  </ul>
+  <small><a href="/squads/<%= @squad['squad_id'] %>/students/new">Add New Student</a></small>
+</div>
 <%= erb :"partials/_footer" %>

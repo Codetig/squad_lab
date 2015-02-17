@@ -1,15 +1,38 @@
-<% erb :'partials/_header' %>
+<%= erb :'partials/_header' %>
 
-<div>
-<h1>New Student</h1>
-<p>Please add details about the new student below:</p>
-  <form action="/squads/:squad_id/students" method="POST">
-    <label for="name">Name:</label><input type="text" name="name" id="name"> <br>
-   <label for="age">Age:</label><input type="text" name="age" id="age"> <br>
-    <label for="animal">Spirit Animal:</label><input type="text" name="animal" id="animal"> <br>
-     <label for="squad_id">Squad ID:</label><input type="text" name="squadid" id="squad_id" value=<%= @squad['squad_id'] %>> <br>
-    <input type="submit" value="Add Student">
+<div id="student-edit" class="container-fluid">
+  <h1>New Student</h1>
+  <p>Please add details about the new student below:</p>
+  <form action="/squads/:squad_id/students" method="POST" class="form-horizontal">
+    <div class="form-group">
+    <label for="name" class="col-sm-2 control-label">Name:</label>
+    <div class="col-sm-10">
+    <input type="text" name="name" id="name">
+    </div></div>
+    <div class="form-group">
+    <label for="age" class="col-sm-2 control-label">Age:</label>
+    <div class="col-sm-10">
+    <input type="text" name="age" id="age">
+    </div></div>
+    <div class="form-group">
+    <label for="leader" class="col-sm-2 control-label">Squad Leader?</label>
+    <div class="col-sm-10">
+    <input type="text" name="leader" id="leader" value="false"> 
+    </div></div>
+    <div class="form-group">
+    <label for="animal" class="col-sm-2 control-label">Spirit Animal:</label>
+    <div class="col-sm-10">
+    <input type="text" name="animal" id="animal"> 
+    </div></div>
+    <div class="form-group">
+    <label for="squad_id" class="col-sm-2 control-label">Squad ID:</label>
+    <div class="col-sm-10">
+    <input type="text" name="squadid" id="squad_id" value=<%= @squad['squad_id'] %>>
+    <input type="submit" value="Add Student" class="btn btn-primary">
+    </div></div>
   </form>
+  <small></small>
+  <ul class="col-sm-offset-3"></ul>
 </div>
 
-<% erb :'partials/_footer' %>
+<%= erb :'partials/_footer' %>

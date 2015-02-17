@@ -1,10 +1,16 @@
-<% erb :'partials/_header' %>
-<h1>Squad Information</h1>
-<p>This WDI 16 squad:</p>
-<ul>
-  <li>Name: <%= @squad["name"]%></li>
-  <li>Mascot: <%= @squad["mascot"]%></li>
-</ul>
-<a href="/squads/<%=@squad["squad_id"]%>/students">see students</a>  
-<a href="/squads/<%=@squad["squad_id"]%>/edit">edit squad</a>  
-<% erb :'partials/_footer' %>
+<%= erb :'partials/_header' %>
+<div class="container-fluid">
+  <h1>Squad Information</h1>
+  <p>This WDI 16 squad:</p>
+  <ul>
+    <li>Name: <%= @squad["name"]%></li>
+    <li>Mascot: <%= @squad["mascot"]%></li>
+  </ul><br>
+
+  <small>
+    <a href="/squads/<%=@squad["squad_id"]%>/students">see students</a> | <a href="/squads/<%=@squad["squad_id"]%>/edit">edit squad</a>
+<small>
+  </div>
+  
+ 
+<%= erb :'partials/_footer' %>
